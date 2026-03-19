@@ -383,12 +383,13 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
     document.getElementById('loading').remove();
 
     const width = 960, height = 600;
+    const svgW = 1010, svgH = 615;
     const projection = d3.geoAlbersUsa().scale(1280).translate([width / 2, height / 2]);
     const path = d3.geoPath().projection(projection);
 
     const svg = d3.select('#map-container')
       .append('svg')
-      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('viewBox', `0 0 ${svgW} ${svgH}`)
       .attr('preserveAspectRatio', 'xMidYMid meet');
 
     const states = topojson.feature(us, us.objects.states);
@@ -449,23 +450,24 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
       "55":"WI","56":"WY"
     };
 
-    // Small states that use callout labels with arrows
-    // Positions are ABSOLUTE [x, y] in SVG coords so nothing goes off-screen
-    // anchor: 'start' or 'end' for text alignment
+    const FONT_SIZE = 9.5;
+
+    // Callout states: label at absolute SVG coords, line drawn to state centroid
     const callouts = {
-      "50": { lx: 810, ly: 118, anchor: 'start' },  // VT
-      "33": { lx: 845, ly: 138, anchor: 'start' },  // NH
-      "25": { lx: 875, ly: 158, anchor: 'start' },  // MA
-      "44": { lx: 875, ly: 178, anchor: 'start' },  // RI
-      "09": { lx: 875, ly: 198, anchor: 'start' },  // CT
-      "34": { lx: 875, ly: 218, anchor: 'start' },  // NJ
-      "10": { lx: 875, ly: 238, anchor: 'start' },  // DE
-      "24": { lx: 875, ly: 258, anchor: 'start' },  // MD
-      "11": { lx: 875, ly: 278, anchor: 'start' },  // DC
-      "15": { lx: 390, ly: 535, anchor: 'middle' }, // HI — above HI inset
+      "50": { lx: 970, ly: 128 },  // VT
+      "33": { lx: 970, ly: 146 },  // NH
+      "25": { lx: 970, ly: 164 },  // MA
+      "44": { lx: 970, ly: 182 },  // RI
+      "09": { lx: 970, ly: 200 },  // CT
+      "34": { lx: 970, ly: 218 },  // NJ
+      "10": { lx: 970, ly: 236 },  // DE
+      "24": { lx: 970, ly: 254 },  // MD
+      "11": { lx: 970, ly: 272 },  // DC
+      "12": { lx: 820, ly: 565 },  // FL
+      "15": { lx: 248, ly: 548 },  // HI
     };
 
-    const FONT_SIZE = 9.5; // consistent size for ALL labels
+    const PILL_W = 28, PILL_H = 15;
 
     const labelLayer = svg.append('g').attr('pointer-events', 'none');
 
@@ -478,46 +480,43 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
       if (!c || isNaN(c[0]) || isNaN(c[1])) return;
 
       if (callouts[fips]) {
-        const { lx, ly, anchor } = callouts[fips];
+        const { lx, ly } = callouts[fips];
+        const pillCx = lx; // center x of pill
 
-        // Line from centroid dot to label
+        // Line from state centroid to pill edge
         labelLayer.append('line')
           .attr('x1', c[0]).attr('y1', c[1])
-          .attr('x2', anchor === 'end' ? lx + 14 : anchor === 'start' ? lx - 14 : lx)
-          .attr('y2', ly)
-          .attr('stroke', 'rgba(255,255,255,0.65)')
-          .attr('stroke-width', 1)
-          .attr('stroke-dasharray', '2,2');
+          .attr('x2', pillCx).attr('y2', ly)
+          .attr('stroke', 'rgba(0,0,0,0.55)')
+          .attr('stroke-width', 1.1)
+          .attr('stroke-dasharray', '2.5,2');
 
-        // Dot on state
+        // Dot on state centroid
         labelLayer.append('circle')
           .attr('cx', c[0]).attr('cy', c[1])
-          .attr('r', 2)
-          .attr('fill', 'white')
-          .attr('opacity', 0.9);
+          .attr('r', 2.2)
+          .attr('fill', 'rgba(0,0,0,0.6)');
 
-        // Pill background
-        const pillW = 26, pillH = 14;
-        const pillX = anchor === 'end' ? lx - pillW : anchor === 'start' ? lx - 2 : lx - pillW/2;
+        // Pill
         labelLayer.append('rect')
-          .attr('x', pillX).attr('y', ly - 10)
-          .attr('width', pillW).attr('height', pillH)
-          .attr('rx', 3)
-          .attr('fill', 'rgba(0,0,0,0.30)');
+          .attr('x', pillCx - PILL_W/2).attr('y', ly - PILL_H/2)
+          .attr('width', PILL_W).attr('height', PILL_H)
+          .attr('rx', 4)
+          .attr('fill', 'rgba(30,30,30,0.78)');
 
-        // Label
+        // Label text
         labelLayer.append('text')
-          .attr('x', anchor === 'end' ? lx - pillW/2 : anchor === 'start' ? lx + 11 : lx)
-          .attr('y', ly + 1.5)
+          .attr('x', pillCx)
+          .attr('y', ly + FONT_SIZE * 0.36)
           .attr('text-anchor', 'middle')
           .attr('font-family', 'Poppins, sans-serif')
           .attr('font-size', FONT_SIZE + 'px')
           .attr('font-weight', '700')
-          .attr('fill', 'rgba(255,255,255,0.96)')
+          .attr('fill', 'rgba(255,255,255,0.97)')
           .text(abbr);
 
       } else {
-        // All inline labels use the same consistent font size
+        // Standard inline label — consistent size for all
         labelLayer.append('text')
           .attr('x', c[0])
           .attr('y', c[1] + FONT_SIZE * 0.38)
