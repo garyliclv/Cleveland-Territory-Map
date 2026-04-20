@@ -59,7 +59,7 @@ h1 { font-family: 'EB Garamond', serif; font-size: clamp(22px,3vw,32px); color: 
 
 /* ── Territory colors — Cleveland Brand Palette ──────────────────────────
    EAST  (Megan Lanning)   → Warm family: reds, burgundies, ambers, golds
-   WEST  (Jermaine Richardson) → Cool family: navies, steels, slates, teals
+   WEST  (Open) → Cool family: navies, steels, slates, teals
    ──────────────────────────────────────────────────────────────────────── */
 
 /* EAST — warm reds/ambers anchored to #C8102E */
@@ -79,6 +79,7 @@ h1 { font-family: 'EB Garamond', serif; font-size: clamp(22px,3vw,32px); color: 
 .t-proreps  { fill: #2A6090; }   /* Pro Reps West    — Slate Blue             */
 .t-esource  { fill: #1E6E78; }   /* E Source Miller  — Steel Teal             */
 .t-kain     { fill: #2E5470; }   /* Kain McArthur    — Denim Blue             */
+.t-fer      { fill: #1785B0; }   /* FER              — Bright Teal Blue        */
 
 /* State labels */
 .state-label {
@@ -477,78 +478,79 @@ const groupLogos = {
 
 const territories = {
   // Megan Lanning – East
-  // Lane Marketing Group
-  "55": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // WI
-  "26": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // MI
-  "17": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // IL
-  "18": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // IN
-  "39": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // OH
-  // Moccia Enterprises
-  "42": { group:"Moccia Enterprises", url:"mocciaent.com", cls:"t-moccia", side:"warm" }, // PA
-  // Zink
+  // Lane Marketing Group — VA · MD · DC
+  "51": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // VA
+  "24": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // MD
+  "11": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // DC
+  // Moccia Enterprises — Eastern PA · Southern NJ · DE
+  "42": { group:"Culinary Concepts", url:"cc-fsr.com", cls:"t-culinary", side:"cool" }, // PA (base = East → Culinary Concepts; split overlay covers Western PA → Zink)
+  "34": { group:"P3 Reps", url:"p3reps.com", cls:"t-p3", side:"warm" }, // NJ (base; split overlay covers Southern NJ → Moccia)
+  "10": { group:"Moccia Enterprises", url:"mocciaent.com", cls:"t-moccia", side:"warm" }, // DE
+  // Food Equipment Representatives — FL
+  "12": { group:"Food Equipment Representatives", url:"ferinc.net", cls:"t-fer", side:"cool" }, // FL
+  // Zink — WV · KY · IL · IN · MI · OH · WI · Western PA
   "21": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // KY
   "54": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // WV
-  "51": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // VA
-  "24": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // MD
-  "11": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // DC
-  "10": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // DE
+  "17": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // IL
+  "18": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // IN
+  "26": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // MI
+  "39": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // OH
+  "55": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // WI
   // Culinary Concepts
   "37": { group:"Culinary Concepts", url:"cc-fsr.com", cls:"t-culinary", side:"cool" }, // NC
   "45": { group:"Culinary Concepts", url:"cc-fsr.com", cls:"t-culinary", side:"cool" }, // SC
-  // CGAReps
+  // CGAReps — AL · GA · TN
   "47": { group:"CGAReps", url:"cgareps.com", cls:"t-cga", side:"cool" }, // TN
-  "05": { group:"CGAReps", url:"cgareps.com", cls:"t-cga", side:"cool" }, // AR
-  "28": { group:"CGAReps", url:"cgareps.com", cls:"t-cga", side:"cool" }, // MS
-  "22": { group:"CGAReps", url:"cgareps.com", cls:"t-cga", side:"cool" }, // LA
   "01": { group:"CGAReps", url:"cgareps.com", cls:"t-cga", side:"cool" }, // AL
   "13": { group:"CGAReps", url:"cgareps.com", cls:"t-cga", side:"cool" }, // GA
-  // Wallin FS
-  "12": { group:"Wallin FS", url:"wallinfsr.com", cls:"t-wallin", side:"cool" }, // FL
-  // Vader Landgraf
+  // Wallin FS — MS · AR · LA
+  "28": { group:"Wallin FS", url:"wallinfsr.com", cls:"t-wallin", side:"cool" }, // MS
+  "05": { group:"Wallin FS", url:"wallinfsr.com", cls:"t-wallin", side:"cool" }, // AR
+  "22": { group:"Wallin FS", url:"wallinfsr.com", cls:"t-wallin", side:"cool" }, // LA
+  // Vader Landgraf — ND · SD · MN · IA
   "38": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // ND
   "46": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // SD
   "27": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // MN
   "19": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // IA
-  "29": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // MO
-  // Hatch Jennings
+  // Hatch Jennings — ME · VT · NH · MA · CT · RI (no NY)
   "23": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // ME
   "50": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // VT
   "33": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // NH
   "25": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // MA
   "09": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // CT
   "44": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // RI
-  "36": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // NY
-  // P3 Reps
-  "34": { group:"P3 Reps", url:"p3reps.com", cls:"t-p3", side:"warm" }, // NJ
+  // P3 Reps — NY · Northern NJ
+  "36": { group:"P3 Reps", url:"p3reps.com", cls:"t-p3", side:"warm" }, // NY
 
-  // Jermaine Richardson – West
-  // The Redstone Group
+  // West (Open)
+  // The Redstone Group — MT · ID · WY · UT · CO · NM · AZ
   "30": { group:"The Redstone Group", url:"theredstonegroup.net", cls:"t-redstone", side:"cool" }, // MT
   "16": { group:"The Redstone Group", url:"theredstonegroup.net", cls:"t-redstone", side:"cool" }, // ID
   "56": { group:"The Redstone Group", url:"theredstonegroup.net", cls:"t-redstone", side:"cool" }, // WY
   "49": { group:"The Redstone Group", url:"theredstonegroup.net", cls:"t-redstone", side:"cool" }, // UT
   "08": { group:"The Redstone Group", url:"theredstonegroup.net", cls:"t-redstone", side:"cool" }, // CO
   "35": { group:"The Redstone Group", url:"theredstonegroup.net", cls:"t-redstone", side:"cool" }, // NM
-  "02": { group:"The Redstone Group", url:"theredstonegroup.net", cls:"t-redstone", side:"cool" }, // AK
-  // Pro Reps West
+  "04": { group:"The Redstone Group", url:"theredstonegroup.net", cls:"t-redstone", side:"cool" }, // AZ
+  // Pro Reps West — CA · NV
   "06": { group:"Pro Reps West", url:"proreps.com", cls:"t-proreps", side:"cool" }, // CA
   "32": { group:"Pro Reps West", url:"proreps.com", cls:"t-proreps", side:"cool" }, // NV
-  "04": { group:"Pro Reps West", url:"proreps.com", cls:"t-proreps", side:"cool" }, // AZ
-  // Performance Reps
+  // Performance Reps — WA · OR · HI · AK
   "53": { group:"Performance Reps", url:"prnw.com", cls:"t-perf", side:"cool" }, // WA
   "41": { group:"Performance Reps", url:"prnw.com", cls:"t-perf", side:"cool" }, // OR
   "15": { group:"Performance Reps", url:"prnw.com", cls:"t-perf", side:"cool" }, // HI
-  // E Source Miller
+  "02": { group:"Performance Reps", url:"prnw.com", cls:"t-perf", side:"cool" }, // AK
+  // E Source Miller — TX · OK
   "48": { group:"E Source Miller", url:"esourcemiller.com", cls:"t-esource", side:"cool" }, // TX
   "40": { group:"E Source Miller", url:"esourcemiller.com", cls:"t-esource", side:"cool" }, // OK
-  // Kain McArthur
+  // Kain McArthur — NE · KS · MO
   "31": { group:"Kain McArthur", url:"kainmcarthur.com", cls:"t-kain", side:"cool" }, // NE
   "20": { group:"Kain McArthur", url:"kainmcarthur.com", cls:"t-kain", side:"cool" }, // KS
+  "29": { group:"Kain McArthur", url:"kainmcarthur.com", cls:"t-kain", side:"cool" }, // MO
 };
 
 const repData = {
   warm: { name:"Megan Lanning", title:"Director Sales, East", badge:"East", badgeClass:"bw", photoId:"megan" },
-  cool: { name:"Jermaine Richardson", title:"Director Sales, West", badge:"West", badgeClass:"bc", photoId:"jermaine" }
+  cool: { name:"Open", title:"Director Sales, West", badge:"West", badgeClass:"bc", photoId:"" }
 };
 
 const stateNames = {
@@ -667,6 +669,13 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
 
     const FONT_SIZE = 14;
 
+    // Manual centroid overrides for states whose D3 centroid falls outside the visible landmass
+    const manualPos = {
+      "26": { x: 658, y: 180 }  // MI — center of Lower Peninsula (centroid falls over Lake Michigan)
+    };
+    // States whose default abbr label is suppressed (replaced by split-half labels)
+    const skipLabels = new Set(["42"]); // PA — replaced by W. PA / E. PA
+
     // Callout states: label at absolute SVG coords, line drawn to state centroid
     const callouts = {
       "50": { lx: 970, ly: 128 },  // VT
@@ -684,14 +693,16 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
 
     const PILL_W = 28, PILL_H = 15;
 
-    const labelLayer = svg.append('g').attr('pointer-events', 'none');
+    const labelLayer = svg.append('g').attr('class', 'label-layer').attr('pointer-events', 'none');
 
     states.features.forEach(d => {
       const fips = d.id.toString().padStart(2,'0');
       const abbr = abbrs[fips];
       if (!abbr) return;
 
-      const c = path.centroid(d);
+      if (skipLabels.has(fips)) return;
+      const rawC = path.centroid(d);
+      const c = manualPos[fips] ? [manualPos[fips].x, manualPos[fips].y] : rawC;
       if (!c || isNaN(c[0]) || isNaN(c[1])) return;
 
       if (callouts[fips]) {
@@ -754,7 +765,7 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
 
     const splitDefs = svg.append('defs');
 
-    function addSplitOverlay(fipsCode, clipY, clipSide, fillClass, data) {
+    function addSplitOverlay(fipsCode, clipVal, clipSide, fillClass, data, lineY0) {
       // Find the feature
       const feat = states.features.find(f => f.id.toString().padStart(2,'0') === fipsCode);
       if (!feat) return;
@@ -765,16 +776,24 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
 
       const clipId = `clip-${fipsCode}-${clipSide}`;
 
-      // Define clip rectangle for top or bottom half
+      // Define clip rectangle for top/bottom (horizontal) or left/right (vertical) split
       const clipRect = splitDefs.append('clipPath').attr('id', clipId);
       if (clipSide === 'top') {
         clipRect.append('rect')
           .attr('x', x0).attr('y', y0)
-          .attr('width', x1 - x0).attr('height', clipY - y0);
+          .attr('width', x1 - x0).attr('height', clipVal - y0);
+      } else if (clipSide === 'bottom') {
+        clipRect.append('rect')
+          .attr('x', x0).attr('y', clipVal)
+          .attr('width', x1 - x0).attr('height', y1 - clipVal);
+      } else if (clipSide === 'left') {
+        clipRect.append('rect')
+          .attr('x', x0).attr('y', y0)
+          .attr('width', clipVal - x0).attr('height', y1 - y0);
       } else {
         clipRect.append('rect')
-          .attr('x', x0).attr('y', clipY)
-          .attr('width', x1 - x0).attr('height', y1 - clipY);
+          .attr('x', clipVal).attr('y', y0)
+          .attr('width', x1 - clipVal).attr('height', y1 - y0);
       }
 
       // Draw overlay path, clipped
@@ -813,168 +832,62 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
             photoId: rep2.photoId, logoSrc
           });
         })
-        .on('mouseleave', () => tip.style.display = 'none');
+        .on('mouseleave', () => tip.style.display = 'none')
+        .on('click', () => { if (data.url) window.open('https://' + data.url.replace(/^https?:\/\//, ''), '_blank'); })
+        .style('cursor', 'pointer');
 
-      // Draw a dividing line between the two halves
-      svg.append('line')
-        .attr('x1', x0 + 1).attr('y1', clipY)
-        .attr('x2', x1 - 1).attr('y2', clipY)
-        .attr('stroke', 'white')
-        .attr('stroke-width', 1.5)
-        .attr('stroke-dasharray', '3,2')
-        .attr('pointer-events', 'none');
+      // Draw dividing line once per split (left/top call only, to avoid duplication)
+      if (clipSide === 'left') {
+        const ly0 = (lineY0 !== undefined) ? lineY0 : y0 + 1;
+        svg.append('line')
+          .attr('x1', clipVal).attr('y1', ly0)
+          .attr('x2', clipVal).attr('y2', y1 - 1)
+          .attr('stroke', 'white')
+          .attr('stroke-width', 1.5)
+          .attr('stroke-dasharray', '3,2')
+          .attr('pointer-events', 'none');
+      } else if (clipSide === 'top') {
+        svg.append('line')
+          .attr('x1', x0 + 1).attr('y1', clipVal)
+          .attr('x2', x1 - 1).attr('y2', clipVal)
+          .attr('stroke', 'white')
+          .attr('stroke-width', 1.5)
+          .attr('stroke-dasharray', '3,2')
+          .attr('pointer-events', 'none');
+      }
     }
 
-    // Connecticut: north = Hatch Jennings, south = P3 Reps
-    // CT bounds approx y: 193–213, split at y=203
-    addSplitOverlay("09", 203, "top",    "t-hatch", { label:"Connecticut (North)", group:"Hatch Jennings", url:"hatchjennings.com", side:"warm" });
-    addSplitOverlay("09", 203, "bottom", "t-p3",    { label:"Connecticut (South)", group:"P3 Reps", url:"p3reps.com", side:"warm" });
+    // Connecticut: entirely Hatch Jennings (no split)
 
     // New Jersey: north = P3 Reps, south = Moccia
     // NJ bounds approx y: 198–240, split at y=224
     addSplitOverlay("34", 224, "top",    "t-p3",     { label:"New Jersey (North)", group:"P3 Reps", url:"p3reps.com", side:"warm" });
     addSplitOverlay("34", 224, "bottom", "t-moccia", { label:"New Jersey (South)", group:"Moccia Enterprises", url:"mocciaent.com", side:"warm" });
 
-    // ── CRACKER BARREL MARKER (Nashville, TN) ───────────────────────────────
-    const crackerBarrel = { x: 700, y: 300 };
-    const cbG = svg.append('g').attr('pointer-events', 'none');
-    cbG.append('circle')
-      .attr('cx', crackerBarrel.x).attr('cy', crackerBarrel.y).attr('r', 7)
-      .attr('fill', 'none').attr('stroke', 'white').attr('stroke-width', 1.5).attr('opacity', 0.6);
-    cbG.append('circle')
-      .attr('cx', crackerBarrel.x).attr('cy', crackerBarrel.y).attr('r', 3.5)
-      .attr('fill', '#fff').attr('stroke', '#C8102E').attr('stroke-width', 1.5);
-    cbG.append('text')
-      .attr('x', crackerBarrel.x + 11).attr('y', crackerBarrel.y + 4)
-      .attr('font-family', 'Poppins, sans-serif')
-      .attr('font-size', '7.5px').attr('font-weight', '700')
-      .attr('fill', 'white')
-      .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))')
-      .text('CRACKER BARREL');
-    svg.append('circle')
-      .attr('cx', crackerBarrel.x).attr('cy', crackerBarrel.y).attr('r', 12)
-      .attr('fill', 'transparent').style('cursor', 'pointer')
-      .on('mousemove', function(event) {
-        document.getElementById('tip-state').textContent = 'Nashville, TN';
-        document.getElementById('tip-group').textContent = 'Cracker Barrel';
-        document.getElementById('tip-url').textContent = 'crackerbarrel.com';
-        document.getElementById('tip-name').textContent = '—';
-        document.getElementById('tip-title').textContent = 'Key Account';
-        const b = document.getElementById('tip-badge'); b.textContent = 'East'; b.className = 'tip-badge bw';
-        document.getElementById('tip-photo').innerHTML = '📍';
-        const logoSrc_CrackerBarrel = groupLogos['Cracker Barrel'];
-        if (logoSrc_CrackerBarrel) {
-          document.getElementById('tip-logo').innerHTML = `<img src="${logoSrc_CrackerBarrel}">`;
-          document.getElementById('tip-logo').style.display = 'flex';
-        } else {
-          document.getElementById('tip-logo').style.display = 'none';
-        }
-        tip.style.display = 'block'; moveTip(event);
-        updateSidePanel({
-          stateName: 'Nashville, TN', group: 'Cracker Barrel', url: 'crackerbarrel.com',
-          repName: '—', repTitle: 'Key Account — Nashville, TN',
-          badgeText: 'East', badgeClass: 'bw',
-          photoId: null, logoSrc: groupLogos['Cracker Barrel'] || null
-        });
-      })
-      .on('mouseleave', () => tip.style.display = 'none');
+    // Pennsylvania: west = Zink, east = Culinary Concepts
+    // PA SVG x bounds: 744–847, midpoint at x≈796
+    addSplitOverlay("42", 796, "left",  "t-zink",     { label:"Pennsylvania (West)", group:"Zink", url:"zinkfsg.com", side:"warm" }, 204);
+    addSplitOverlay("42", 796, "right", "t-culinary", { label:"Pennsylvania (East)", group:"Culinary Concepts", url:"cc-fsr.com", side:"cool" });
 
-    // ── DARDEN MARKER (Orlando, FL) ───────────────────────────────────────
-    const darden = { x: 760, y: 500 };
-    const dG = svg.append('g').attr('pointer-events', 'none');
-    dG.append('circle')
-      .attr('cx', darden.x).attr('cy', darden.y).attr('r', 7)
-      .attr('fill', 'none').attr('stroke', 'white').attr('stroke-width', 1.5).attr('opacity', 0.6);
-    dG.append('circle')
-      .attr('cx', darden.x).attr('cy', darden.y).attr('r', 3.5)
-      .attr('fill', '#fff').attr('stroke', '#C8102E').attr('stroke-width', 1.5);
-    dG.append('text')
-      .attr('x', darden.x + 11).attr('y', darden.y + 4)
-      .attr('font-family', 'Poppins, sans-serif')
-      .attr('font-size', '7.5px').attr('font-weight', '700')
-      .attr('fill', 'white')
-      .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))')
-      .text('DARDEN');
-    svg.append('circle')
-      .attr('cx', darden.x).attr('cy', darden.y).attr('r', 12)
-      .attr('fill', 'transparent').style('cursor', 'pointer')
-      .on('mousemove', function(event) {
-        document.getElementById('tip-state').textContent = 'Orlando, FL';
-        document.getElementById('tip-group').textContent = 'Darden';
-        document.getElementById('tip-url').textContent = 'darden.com';
-        document.getElementById('tip-name').textContent = '—';
-        document.getElementById('tip-title').textContent = 'Key Account';
-        const b = document.getElementById('tip-badge'); b.textContent = 'East'; b.className = 'tip-badge bw';
-        document.getElementById('tip-photo').innerHTML = '📍';
-        const logoSrc_Darden = groupLogos['Darden'];
-        if (logoSrc_Darden) {
-          document.getElementById('tip-logo').innerHTML = `<img src="${logoSrc_Darden}">`;
-          document.getElementById('tip-logo').style.display = 'flex';
-        } else {
-          document.getElementById('tip-logo').style.display = 'none';
-        }
-        tip.style.display = 'block'; moveTip(event);
-        updateSidePanel({
-          stateName: 'Orlando, FL', group: 'Darden', url: 'darden.com',
-          repName: '—', repTitle: 'Key Account — Orlando, FL',
-          badgeText: 'East', badgeClass: 'bw',
-          photoId: null, logoSrc: groupLogos['Darden'] || null
-        });
-      })
-      .on('mouseleave', () => tip.style.display = 'none');
+    // W. PA / E. PA inline state labels (replacing the standard "PA" label)
+    [{ text:"W. PA", x: 770, y: 222 }, { text:"E. PA", x: 822, y: 222 }].forEach(lbl => {
+      labelLayer.append('text')
+        .attr('x', lbl.x).attr('y', lbl.y + FONT_SIZE * 0.38)
+        .attr('text-anchor', 'middle')
+        .attr('font-family', 'Poppins, sans-serif')
+        .attr('font-size', '12px')
+        .attr('font-weight', '700')
+        .attr('fill', 'rgba(255,255,255,0.92)')
+        .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.6))')
+        .attr('pointer-events', 'none')
+        .text(lbl.text);
+    });
 
-    // ── KATOM MARKER (Knoxville, TN) ──────────────────────────────────────
-    // Approximate SVG position of Knoxville in Albers projection
-    const katom = { x: 718, y: 307 };
 
-    // Pulsing ring
-    const katomG = svg.append('g').attr('pointer-events', 'none');
-    katomG.append('circle')
-      .attr('cx', katom.x).attr('cy', katom.y).attr('r', 7)
-      .attr('fill', 'none').attr('stroke', 'white').attr('stroke-width', 1.5)
-      .attr('opacity', 0.6);
-    katomG.append('circle')
-      .attr('cx', katom.x).attr('cy', katom.y).attr('r', 3.5)
-      .attr('fill', '#fff').attr('stroke', '#C8102E').attr('stroke-width', 1.5);
-    katomG.append('text')
-      .attr('x', katom.x + 11).attr('y', katom.y + 4)
-      .attr('font-family', 'Poppins, sans-serif')
-      .attr('font-size', '7.5px').attr('font-weight', '700')
-      .attr('fill', 'white')
-      .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))')
-      .text('KATOM');
 
-    // Invisible hover target for Katom
-    svg.append('circle')
-      .attr('cx', katom.x).attr('cy', katom.y).attr('r', 12)
-      .attr('fill', 'transparent')
-      .style('cursor', 'pointer')
-      .on('mousemove', function(event) {
-        document.getElementById('tip-state').textContent = 'Knoxville, TN';
-        document.getElementById('tip-group').textContent = 'Katom';
-        document.getElementById('tip-url').textContent = 'katom.com';
-        document.getElementById('tip-name').textContent = '—';
-        document.getElementById('tip-title').textContent = 'Regional Partner';
-        const b = document.getElementById('tip-badge');
-        b.textContent = 'East'; b.className = 'tip-badge bw';
-        document.getElementById('tip-photo').innerHTML = '📍';
-        const logoSrc_Katom = groupLogos['Katom'];
-        if (logoSrc_Katom) {
-          document.getElementById('tip-logo').innerHTML = `<img src="${logoSrc_Katom}">`;
-          document.getElementById('tip-logo').style.display = 'flex';
-        } else {
-          document.getElementById('tip-logo').style.display = 'none';
-        }
-        tip.style.display = 'block';
-        moveTip(event);
-        updateSidePanel({
-          stateName: 'Knoxville, TN', group: 'Katom', url: 'katom.com',
-          repName: '—', repTitle: 'Key Account — Knoxville, TN',
-          badgeText: 'East', badgeClass: 'bw',
-          photoId: null, logoSrc: groupLogos['Katom'] || null
-        });
-      })
-      .on('mouseleave', () => tip.style.display = 'none');
+
+
+
 
     svg.on('mousemove', moveTip);
   })
