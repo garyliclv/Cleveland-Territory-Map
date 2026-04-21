@@ -482,13 +482,13 @@ const territories = {
   "51": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // VA
   "24": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // MD
   "11": { group:"Lane Marketing Group", url:"lanegroup.com", cls:"t-lane", side:"warm" }, // DC
-  // Moccia Enterprises — Eastern PA · Southern NJ · DE
-  "42": { group:"Culinary Concepts", url:"cc-fsr.com", cls:"t-culinary", side:"cool" }, // PA (base = East → Culinary Concepts; split overlay covers Western PA → Zink)
+  // Moccia Enterprises — Eastern PA · Southern NJ · DE (split overlays handle PA and NJ)
+  "42": { group:"Moccia Enterprises", url:"mocciaent.com", cls:"t-moccia", side:"warm" }, // PA (base = East → Moccia Enterprises; split overlay covers Western PA → Zink)
   "34": { group:"P3 Reps", url:"p3reps.com", cls:"t-p3", side:"warm" }, // NJ (base; split overlay covers Southern NJ → Moccia)
   "10": { group:"Moccia Enterprises", url:"mocciaent.com", cls:"t-moccia", side:"warm" }, // DE
   // Food Equipment Representatives — FL
   "12": { group:"Food Equipment Representatives", url:"ferinc.net", cls:"t-fer", side:"cool" }, // FL
-  // Zink — WV · KY · IL · IN · MI · OH · WI · Western PA
+  // Zink — WV · KY · Northern IL · IN · MI · OH · WI · Western PA
   "21": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // KY
   "54": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // WV
   "17": { group:"Zink", url:"zinkfsg.com", cls:"t-zink", side:"warm" }, // IL
@@ -507,11 +507,12 @@ const territories = {
   "28": { group:"Wallin FS", url:"wallinfsr.com", cls:"t-wallin", side:"cool" }, // MS
   "05": { group:"Wallin FS", url:"wallinfsr.com", cls:"t-wallin", side:"cool" }, // AR
   "22": { group:"Wallin FS", url:"wallinfsr.com", cls:"t-wallin", side:"cool" }, // LA
-  // Vader Landgraf — ND · SD · MN · IA
+  // Vader Landgraf — ND · SD · MN
   "38": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // ND
   "46": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // SD
   "27": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // MN
-  "19": { group:"Vader Landgraf", url:"vaderandlandgraf.com", cls:"t-vader", side:"warm" }, // IA
+  // Kain McArthur — NE · KS · MO · IA
+  "19": { group:"Kain McArthur", url:"kainmcarthur.com", cls:"t-kain", side:"cool" }, // IA
   // Hatch Jennings — ME · VT · NH · MA · CT · RI (no NY)
   "23": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // ME
   "50": { group:"Hatch Jennings", url:"hatchjennings.com", cls:"t-hatch", side:"warm" }, // VT
@@ -542,7 +543,7 @@ const territories = {
   // E Source Miller — TX · OK
   "48": { group:"E Source Miller", url:"esourcemiller.com", cls:"t-esource", side:"cool" }, // TX
   "40": { group:"E Source Miller", url:"esourcemiller.com", cls:"t-esource", side:"cool" }, // OK
-  // Kain McArthur — NE · KS · MO
+  // Kain McArthur — NE · KS · MO · IA · Southern IL
   "31": { group:"Kain McArthur", url:"kainmcarthur.com", cls:"t-kain", side:"cool" }, // NE
   "20": { group:"Kain McArthur", url:"kainmcarthur.com", cls:"t-kain", side:"cool" }, // KS
   "29": { group:"Kain McArthur", url:"kainmcarthur.com", cls:"t-kain", side:"cool" }, // MO
@@ -674,7 +675,7 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
       "26": { x: 658, y: 180 }  // MI — center of Lower Peninsula (centroid falls over Lake Michigan)
     };
     // States whose default abbr label is suppressed (replaced by split-half labels)
-    const skipLabels = new Set(["42"]); // PA — replaced by W. PA / E. PA
+    const skipLabels = new Set(["42", "17"]); // PA — W. PA / E. PA; IL — N. IL / S. IL
 
     // Callout states: label at absolute SVG coords, line drawn to state centroid
     const callouts = {
@@ -864,10 +865,29 @@ fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
     addSplitOverlay("34", 224, "top",    "t-p3",     { label:"New Jersey (North)", group:"P3 Reps", url:"p3reps.com", side:"warm" });
     addSplitOverlay("34", 224, "bottom", "t-moccia", { label:"New Jersey (South)", group:"Moccia Enterprises", url:"mocciaent.com", side:"warm" });
 
-    // Pennsylvania: west = Zink, east = Culinary Concepts
+    // Pennsylvania: west = Zink, east = Moccia Enterprises
     // PA SVG x bounds: 744–847, midpoint at x≈796
-    addSplitOverlay("42", 796, "left",  "t-zink",     { label:"Pennsylvania (West)", group:"Zink", url:"zinkfsg.com", side:"warm" }, 204);
-    addSplitOverlay("42", 796, "right", "t-culinary", { label:"Pennsylvania (East)", group:"Culinary Concepts", url:"cc-fsr.com", side:"cool" });
+    addSplitOverlay("42", 796, "left",  "t-zink",   { label:"Pennsylvania (West)", group:"Zink", url:"zinkfsg.com", side:"warm" }, 204);
+    addSplitOverlay("42", 796, "right", "t-moccia", { label:"Pennsylvania (East)", group:"Moccia Enterprises", url:"mocciaent.com", side:"warm" });
+
+    // Illinois: north (incl. Springfield) = Zink, south of Springfield = Kain McArthur
+    // IL SVG y bounds: 209–335, Springfield at y≈264, split just south at y=268
+    addSplitOverlay("17", 268, "top",    "t-zink", { label:"Illinois (North)", group:"Zink", url:"zinkfsg.com", side:"warm" });
+    addSplitOverlay("17", 268, "bottom", "t-kain", { label:"Illinois (South)", group:"Kain McArthur", url:"kainmcarthur.com", side:"cool" });
+
+    // N. IL / S. IL inline labels (replacing the standard "IL" label)
+    [{ text:"N. IL", x: 601, y: 238 }, { text:"S. IL", x: 601, y: 302 }].forEach(lbl => {
+      labelLayer.append('text')
+        .attr('x', lbl.x).attr('y', lbl.y + FONT_SIZE * 0.38)
+        .attr('text-anchor', 'middle')
+        .attr('font-family', 'Poppins, sans-serif')
+        .attr('font-size', '12px')
+        .attr('font-weight', '700')
+        .attr('fill', 'rgba(255,255,255,0.92)')
+        .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.6))')
+        .attr('pointer-events', 'none')
+        .text(lbl.text);
+    });
 
     // W. PA / E. PA inline state labels (replacing the standard "PA" label)
     [{ text:"W. PA", x: 770, y: 222 }, { text:"E. PA", x: 822, y: 222 }].forEach(lbl => {
